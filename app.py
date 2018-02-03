@@ -10,7 +10,7 @@ def download_mp3(youtube_url):
     yt = YouTube(youtube_url)
     stream = yt.streams.get_by_itag(140)
     downloaded_m4a_file_name = stream.default_filename
-    downloaded_m4a_full_path = Path(output_folder).joinpath(downloaded_m4a_file_name)
+    downloaded_m4a_full_path = Path(downloaded_m4a_file_name)
     converted_mp3_file_name = f"{os.path.splitext(downloaded_m4a_file_name)[0]}.mp3"
     converted_mp3_full_path = Path(output_folder).joinpath(converted_mp3_file_name)
 
@@ -19,7 +19,7 @@ def download_mp3(youtube_url):
     else: 
         print(f"Downloading '{yt.title}'")
         Path(output_folder).mkdir(exist_ok=True)
-        stream.download(output_folder)
+        stream.download()
         (ffmpeg
             .input(str(downloaded_m4a_full_path))
             .output(str(converted_mp3_full_path))

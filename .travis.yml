@@ -9,6 +9,6 @@ script:
   - docker build -t $DOCKER_USERNAME/youtube-mp3-downloader:$TRAVIS_COMMIT .
   - echo 'https://www.youtube.com/watch?v=9bZkp7q19f0' | docker run --rm -i -v `pwd`:/output $DOCKER_USERNAME/youtube-mp3-downloader:$TRAVIS_COMMIT
 after_success:
-  - test -n "$TRAVIS_TAG" && cat "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - test -n "$TRAVIS_TAG" && echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - test -n "$TRAVIS_TAG" && docker tag $DOCKER_USERNAME/youtube-mp3-downloader:$TRAVIS_COMMIT $DOCKER_USERNAME/youtube-mp3-downloader:$TRAVIS_TAG
   - test -n "$TRAVIS_TAG" && docker push $DOCKER_USERNAME/youtube-mp3-downloader:$TRAVIS_TAG

@@ -5,7 +5,7 @@ Downloads list of youtube urls into mp3
 ## Usage
 
 ```bash
-cat youtube_urls.txt | docker run --rm -i -v `pwd`:/app/output kishanb/youtube-mp3-downloader:1.0.0
+cat youtube_urls.txt | docker run --rm -i -v `pwd`:/output kishanb/youtube-mp3-downloader:2.0.0
 ```
 
 ## Contributing

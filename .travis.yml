@@ -6,8 +6,8 @@ env:
     - secure: "bIaC2Xq0sb1dGP4EzmKceQrzkPlTaFzbh+8LZcCqg9mj591oEvpvjGR1xJBSS5RNv4FANmyyQ1DWxdKzOYS/mbmJ6Hz8sJ4Chxg+V8zupUmV2fhlFnO+3lPxEJlV54v31m791p0b63x2Tz4pxKEAwrzvrMl0XxB5rnBAywv3DMsI9sCYw/6vjZpJbGMOP9+WAeotl9kIdontgqHPHE7MdtifmI6LZeogc6IRgrlpbUgYMIJPT8Gp5ipe/8cQr8tlp3nd7AureN7qJ3ADDqgqI0DjCxSPozhm5dElE2H6BBsZE/+hSbB4J/4Rrfgsnnof+QlvxL9KWaVgHHVHtlpmdSKbyovIbn8NCZX9rgg43tllvBiLKLa5kMvUKsAjekYq0RL/x8LlN/jqNPh/rXvN0xSBEtX4kIoinA9qUuDdUxqGS7A8BE6P2hxnxs+c+r+Hrlq4IVkiFlzyZUfjMzeo48SjHFQJ++TUGDdyv40tRmkVxF8/kHfn2KjAm9Z77wp591tfuCY66j4c0ZNFUOkNcnsMh8RQz9EcK7skfOd7reKdxeAh4ghFT/lJHNnUILA+rkO439bgmPa1bG7KwuECPIkF/2m7j3PwRHMQdKC3o5dyZmlgBz7jyeEQNnj5EgHk3IG9bkTpOOLl5GSyxiZaphoqvFnXFrk37r0jMPI43SM="
     - secure: "E+K3o5Du+T7/G9ZrLDMWXXMk3KsAhx5Lll6QtK5tcHV/uP6mLpU5HdzVgAvavGtELMoqbpg4cdfBHARIkizmAFohZGImidytHngRFZodJ9VJUvu76+tgGrpCCpzSctPbux4/9p2Y6SOoFJJX86mLYBKyKyQkqJK0IGx3mUre93YaclCt8Lngqiwqlvru34mh+NbbqmSRFy/OLehAXlW91x+oTIU4kAI29lfosuAKKrufLUeRfnnUfD+KR8KP0a3CfrAQs5xqal5CjFxq5P70TKFvM8QYB+NxNWF73L4PrJzgsa+MGcj8nsu1PbHYVNJIMnjZ88pumCD5sfHVlrre1QN0ME6HNcmsbLH7RRRU6yFU2NHkLqZN7Yfgj4qHePxCNxglBdfKLyQzx8SC380uoPO1akzUnXDnaXFBlw90eaRLzeF8eIwp7ruTrCwGehxXBS2bhAhASDBs1gInXcbXqlNkm/s/tfdRmZVYXg0wngj1wBI7tn9M8pCJeYWBzLCyCO3deIa9j74shoT9a1cMC3V9WqCOJZLi91NnVmPy4SIy+oGHaTzclr6cO/5fFze48EozfOn2/T4Grp0GnZaHv+8LYHGvoJNZduz9KiZBLqDLJUf1xV4KybJDMRoG7aP2plu7Hcdlrii8Qh7X2RdtN//GLm6eAp2YJcNotknJ4qw="
 script:
-  - docker build -t kishanb/youtube-mp3-downloader:$TRAVIS_COMMIT .
-  - echo 'https://www.youtube.com/watch?v=9bZkp7q19f0' | docker run --rm -i -v `pwd`:/output kishanb/youtube-mp3-downloader:$TRAVIS_COMMIT
+  - docker build -t $DOCKER_USERNAME/youtube-mp3-downloader:$TRAVIS_COMMIT .
+  - echo 'https://www.youtube.com/watch?v=9bZkp7q19f0' | docker run --rm -i -v `pwd`:/output $DOCKER_USERNAME/youtube-mp3-downloader:$TRAVIS_COMMIT
 after_success:
   - test -n "$TRAVIS_TAG" && docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - test -n "$TRAVIS_TAG" && docker push kishanb/youtube-mp3-downloader:$TRAVIS_TAG
+  - test -n "$TRAVIS_TAG" && docker push $DOCKER_USERNAME/youtube-mp3-downloader:$TRAVIS_TAG

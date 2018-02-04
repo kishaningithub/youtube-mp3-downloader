@@ -1,5 +1,7 @@
 # Youtube mp3 downloader
 
+[![Build Status](https://travis-ci.org/kishaningithub/youtube-mp3-downloader.svg?branch=master)](https://travis-ci.org/kishaningithub/youtube-mp3-downloader)
+
 Downloads list of youtube urls into mp3
 
 ## Usage

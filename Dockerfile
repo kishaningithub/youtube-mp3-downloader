@@ -24,4 +24,4 @@ RUN apk add --update curl && \
 
 WORKDIR /output
 
-ENTRYPOINT youtube-dl --extract-audio --audio-format mp3 --prefer-ffmpeg -f 140 -a -
+CMD youtube-dl --extract-audio --audio-format mp3 --prefer-ffmpeg -f 140 -a -

@@ -1,19 +1,6 @@
-FROM python:3.6.4-alpine
+FROM alpine:3.7
 
-# ffmpeg installation (Special thanks to https://github.com/opencoconut/ffmpeg/blob/master/Dockerfile )
-ENV FFMPEG_VERSION=3.4.1
-RUN apk add --update build-base curl tar nasm \
-    lame-dev && \
-    DIR=$(mktemp -d) && cd ${DIR} && \
-    curl -s http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz | tar zxf - -C . && \
-    cd ffmpeg-${FFMPEG_VERSION} && \
-    ./configure \
-    --enable-version3 --enable-gpl --enable-nonfree --enable-small --enable-libmp3lame --disable-debug && \
-    make && \
-    make install && \
-    make distclean && \
-    rm -rf ${DIR} && \
-    apk del build-base curl tar nasm && rm -rf /var/cache/apk/*
+RUN apk add --update ffmpeg python
 
 # youtube-dl installation (python is a run time dependency for this)
 ENV YOUTUBE_DL_VERSION=2018.02.04
